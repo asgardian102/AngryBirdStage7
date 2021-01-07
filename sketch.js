@@ -1,3 +1,45 @@
+//data types
+//number
+var num=100
+console.log(num)
+//string...text
+var string="this is a string"
+console.log(string)
+
+//undefined
+var object
+console.log(object)
+
+//null
+object= null
+
+//array: stores multiple different data
+
+var arr1=[100,200,300]
+console.log(arr1)
+
+//display 300.
+console.log(arr1[2])
+
+var arr2=["mrigank", 11, "tyagi"]
+console.log(arr2)
+console.log("The age of "+arr2[0]+" "+arr2[2]+" is "+arr2[1])
+
+//array of arrays
+
+var arr3 = [ [1,2], [3,4], [5,6]]
+console.log(arr3)
+
+console.log(arr3[2][0])
+
+arr2.push("class 7")
+console.log(arr2)
+arr2.pop()
+console.log(arr2)
+
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -8,6 +50,7 @@ var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
 
+var gameState="onSling"
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -69,16 +112,20 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if(gameState!=="launched"){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState="launched"
 }
 
-function keyPressed(){
+/*function keyPressed(){
     if(keyCode === 32){
         slingshot.attach(bird.body);
+        gameState="Onsling"
     }
-}
+}*/
